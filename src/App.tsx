@@ -14,8 +14,8 @@ function App() {
       <div className="container p-7 md:p-9  lg:p-11 ">
         <Header />
         {/* <GameDefault /> */}
-        <GamePlay />
-        {/* <GameResults /> */}
+        {/* <GamePlay /> */}
+        <GameResults />
         <ModalOpen />
         <Modal />
       </div>
