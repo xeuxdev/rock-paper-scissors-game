@@ -12,6 +12,11 @@ const GameResults = () => {
             whileFocus={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
             <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
               <img
                 src="/assets/icon-paper.svg"
@@ -25,7 +30,7 @@ const GameResults = () => {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-col-reverse items-center">
+        <div className="flex flex-col md:flex-col-reverse items-center relative z-20">
           <motion.div
             className="w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full bg-scissors_gradient_2 relative grid place-items-center border-b-[10px] border-b-scissors_gradient_1 shadow-lg hover:cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-scissors_gradient_1 self-end ml-auto"
             aria-label="select for scissors"

@@ -15,3 +15,40 @@ body {
     hsl(237, 49%, 15%)
   );
 }
+
+.wave {
+  /* width: 150%;
+  height: 150%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); ripple effect from one side*/
+  width: 150%;
+  height: 170%;
+  position: absolute;
+  background: #c0c1c0;
+  z-index: -1;
+  border-radius: 50%;
+  scale: 0;
+  animation: wave 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+.wave:nth-child(2) {
+  animation-delay: 1s;
+}
+.wave:nth-child(3) {
+  animation-delay: 1.5s;
+}
+.wave:nth-child(4) {
+  animation-delay: 2s;
+}
+.wave:nth-child(5) {
+  animation-delay: 2.5s;
+}
+
+@keyframes wave {
+  to {
+    scale: 1;
+    opacity: 0;
+  }
+}
