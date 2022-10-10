@@ -9,7 +9,7 @@ const Modal = () => {
       {modal?.isModalOpen && (
         <AnimatePresence>
           <motion.section
-            className="fixed inset-0 backdrop-brightness-50 w-screen h-screen z-50 flex items-center justify-center"
+            className="fixed inset-0 backdrop-brightness-50 w-screen min-h-screen z-50 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.5 } }}
             exit={{ opacity: 0, transition: { duration: 0.3 } }}
