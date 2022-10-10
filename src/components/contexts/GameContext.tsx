@@ -13,9 +13,9 @@ export const GameContext = createContext<GameContextType | null>(null)
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false)
   return (
-    <GameContext.Provider
-      value={{ isModalOpen, setisModalOpen }}
-    ></GameContext.Provider>
+    <GameContext.Provider value={{ isModalOpen, setisModalOpen }}>
+      {children}
+    </GameContext.Provider>
   )
 }
 
