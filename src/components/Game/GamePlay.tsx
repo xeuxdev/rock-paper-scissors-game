@@ -1,5 +1,3 @@
-import { motion } from "framer-motion"
-
 const GamePlay = () => {
   return (
     <div className="w-full md:max-w-[31.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
