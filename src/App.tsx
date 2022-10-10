@@ -15,9 +15,9 @@ function App() {
     <GameContextProvider>
       <div className="container p-7 md:p-9  lg:p-11 min-h-screen">
         <Header />
-        {/* <GameDefault /> */}
+        <GameDefault />
         {/* <GamePlay /> */}
-        <GameResults />
+        {/* <GameResults /> */}
         <ModalOpen />
         <AnimatePresence
           initial={false}
