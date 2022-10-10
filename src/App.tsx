@@ -10,6 +10,7 @@ import {
 
 function App() {
   return (
+    // provider for context
     <GameContextProvider>
       <div className="container p-7 md:p-9  lg:p-11 min-h-screen  ">
         <Header />
