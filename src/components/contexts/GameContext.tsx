@@ -8,7 +8,7 @@ type GameContextProviderType = {
   children: React.ReactNode
 }
 
-const GameContext = createContext<GameContextType | null>(null)
+export const GameContext = createContext<GameContextType | null>(null)
 
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false)
@@ -18,3 +18,5 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
     ></GameContext.Provider>
   )
 }
+
+export default GameContextProvider
