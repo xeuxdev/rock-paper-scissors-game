@@ -18,11 +18,12 @@ export const GameContext = createContext<GameContextType | null>(null)
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
   const handleModalToggle = () => {
-    setisModalOpen((prev) => !prev)
+    //function for toggling state
+    setisModalOpen((prev) => !prev) //toggles state here
   }
   return (
-    <GameContext.Provider
-      value={{ isModalOpen, setisModalOpen, handleModalToggle }}
+    <GameContext.Provider //context provider for the entire app it wrappes
+      value={{ isModalOpen, setisModalOpen, handleModalToggle }} //values in the context
     >
       {children}
     </GameContext.Provider>
