@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 const GameDefault = () => {
   const player = useContext(GameContext)
-  console.log(player?.playerChoice)
+
   return (
     <div className="w-full md:max-w-[31.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
       <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-[url('/assets/bg-triangle.svg')] w-2/4 h-2/4  bg-center bg-no-repeat bg-contain"></div>
@@ -18,6 +18,7 @@ const GameDefault = () => {
           whileFocus={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => player?.setPlayerChoice("paper")}
+          onMouseDown={() => player?.handlePlayerChoice}
         >
           <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
             <img
