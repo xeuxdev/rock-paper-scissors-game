@@ -17,8 +17,6 @@ module.exports = {
       paper_gradient_2: "hsl(230, 89%, 65%)",
       rock_gradient_1: "hsl(349, 71%, 52%)",
       rock_gradient_2: "hsl(349, 70%, 56%)",
-      cyan: "hsl(189, 59%, 53%)",
-      cyan2: "hsl(189, 58%, 57%)",
       white: "hsl(0, 0%, 100%)",
     },
     fontFamily: {
