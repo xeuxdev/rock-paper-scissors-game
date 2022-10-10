@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import GameRipple from "./GameRipple"
 const GameResults = () => {
   return (
     <div className="w-full md:max-w-[31.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
@@ -12,11 +13,7 @@ const GameResults = () => {
             whileFocus={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
+            <GameRipple />
             <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
               <img
                 src="/assets/icon-paper.svg"
