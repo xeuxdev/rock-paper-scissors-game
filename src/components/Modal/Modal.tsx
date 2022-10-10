@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 const Modal = () => {
   const modal = useContext(GameContext)
