@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion"
 import GameContextProvider from "./components/contexts/GameContext"
 import {
   Header,
@@ -18,7 +19,13 @@ function App() {
         {/* <GamePlay /> */}
         <GameResults />
         <ModalOpen />
-        <Modal />
+        <AnimatePresence
+          initial={false}
+          mode="wait"
+          onExitComplete={() => null}
+        >
+          <Modal />
+        </AnimatePresence>
       </div>
     </GameContextProvider>
   )
