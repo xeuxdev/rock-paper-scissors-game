@@ -3,9 +3,10 @@ import { GameContext } from "../contexts/GameContext"
 import { motion } from "framer-motion"
 
 const Modal = () => {
-  const modal = useContext(GameContext)
+  const modal = useContext(GameContext) //imports context and assigns it to modal
   return (
     <>
+      {/* if isModalOpen is true render the modal component */}
       {modal?.isModalOpen && (
         <motion.section
           className="fixed inset-0 backdrop-brightness-50 w-screen min-h-screen z-50 flex items-center justify-center"
@@ -55,7 +56,7 @@ const Modal = () => {
               width="20"
               height="20"
               className="text-dark_Text hover:text-[black] cursor-pointer flex md:hidden"
-              onClick={modal?.handleModalToggle}
+              onClick={modal?.handleModalToggle} //when clicked call the handleModalToggle function
             >
               <path
                 fill="currentColor"
