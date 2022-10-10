@@ -6,3 +6,12 @@
 html {
   font-family: "Barlow Semi Condensed", sans-serif;
 }
+body {
+  width: 100vw;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    270deg,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%)
+  );
+}
