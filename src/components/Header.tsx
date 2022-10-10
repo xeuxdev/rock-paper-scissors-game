@@ -1,5 +1,9 @@
 const Header = () => {
-  return <div className="container p-7 md:p-9 lg:p-11">Header</div>
+  return (
+    <div className=" md:max-w-[43.75rem] rounded-lg md:rounded-xl border-[3px] border-Header">
+      Header
+    </div>
+  )
 }
 
 export default Header
