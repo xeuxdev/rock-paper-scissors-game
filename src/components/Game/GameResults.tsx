@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 import GameRipple from "./GameRipple"
-import { randomOption, whoWinsTheGame } from "./GamePlay"
+import { randomOption, whoWinsTheGame } from "./GamePlayLogic"
 import { motion } from "framer-motion"
 const GameResults = () => {
   const {
