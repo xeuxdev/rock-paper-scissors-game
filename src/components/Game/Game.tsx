@@ -3,12 +3,16 @@ import { GameContext } from "../contexts/GameContext"
 import { GameDefault, GamePlay, GameResults } from "../index"
 
 const Game = () => {
-  const { playerChoice, setAiChoice, setScore } = useContext(GameContext)
+  const { playerChoice, aiChoice, setScore } = useContext(GameContext)
 
   return (
     <div>
-      {playerChoice === "" ? <GameDefault /> : <GamePlay />}
-
+      {playerChoice === "" ? <GameDefault /> : <GameResults />}
+      {/* {playerChoice !== "" && aiChoice !== "" ? (
+        <GameResults />
+      ) : (
+        <GameDefault />
+      )} */}
       {/* <GameResults /> */}
     </div>
   )
