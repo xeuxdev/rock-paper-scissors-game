@@ -5,6 +5,8 @@ type GameContextType = {
   isModalOpen: boolean //toggles modal
   setisModalOpen: React.Dispatch<React.SetStateAction<boolean>> //modal toggler
   handleModalToggle: () => void //function to handle toggle
+  score: string | number
+  setScore: React.Dispatch<React.SetStateAction<string | number>>
   playerChoice: string
   setPlayerChoice: React.Dispatch<React.SetStateAction<string>>
   aiChoice: string
@@ -21,6 +23,7 @@ export const GameContext = createContext<GameContextType>({} as GameContextType)
 //provoder for context wrapper that wrapes entire application
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
+  const [score, setScore] = useState(localStorage.getItem("score") ?? 0)
   const [playerChoice, setPlayerChoice] = useState<string>("") //state for setting player choice
   const [aiChoice, setAiChoice] = useState("")
   const handleModalToggle = () => setisModalOpen((prev) => !prev) //toggles state here
@@ -35,6 +38,8 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
         setPlayerChoice,
         aiChoice,
         setAiChoice,
+        score,
+        setScore,
       }} //values in the context
     >
       {children}
