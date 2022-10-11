@@ -3,7 +3,7 @@ import { GameContext } from "../contexts/GameContext"
 import { motion } from "framer-motion"
 
 const GameDefault = () => {
-  const player = useContext(GameContext)
+  const { setPlayerChoice } = useContext(GameContext)
 
   return (
     <div className="w-full md:max-w-[31.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
@@ -17,7 +17,7 @@ const GameDefault = () => {
           whileHover={{ scale: 1.1 }}
           whileFocus={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => player?.setPlayerChoice("paper")}
+          onClick={() => setPlayerChoice("paper")}
         >
           <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
             <img
@@ -36,7 +36,7 @@ const GameDefault = () => {
           whileHover={{ scale: 1.1 }}
           whileFocus={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => player?.setPlayerChoice("scissors")}
+          onClick={() => setPlayerChoice("scissors")}
         >
           <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
             <img
@@ -56,7 +56,7 @@ const GameDefault = () => {
             whileHover={{ scale: 1.1 }}
             whileFocus={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => player?.setPlayerChoice("rock")}
+            onClick={() => setPlayerChoice("rock")}
           >
             <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
               <img
