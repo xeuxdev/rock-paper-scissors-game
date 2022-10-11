@@ -1,4 +1,8 @@
+import { useContext } from "react"
+import { GameContext } from "../contexts/GameContext"
+
 const Header = () => {
+  const { score } = useContext(GameContext)
   return (
     <div className="w-full md:max-w-[43.75rem] mx-auto rounded-lg md:rounded-xl border-[3px] border-Header h-24 md:h-36 p-3 flex items-center justify-between mb-24 md:mb-14">
       <div className="logo pl-4">
@@ -13,7 +17,7 @@ const Header = () => {
         <p className="uppercase text-score_Text text-xs md:text-sm font-semibold">
           score
         </p>
-        <p className="text-4xl md:text-6xl text-dark_Text font-bold">12</p>
+        <p className="text-4xl md:text-6xl text-dark_Text font-bold">{score}</p>
       </div>
     </div>
   )
