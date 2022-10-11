@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
-import { GameDefault, GamePlay, GameResults } from "../index"
+import { GameDefault, GameResults } from "../index"
 
 const Game = () => {
   const { playerChoice, aiChoice, setScore } = useContext(GameContext)

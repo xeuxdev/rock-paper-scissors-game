@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 import GameRipple from "./GameRipple"
+import { randomOption, whoWinsTheGame } from "./GamePlay"
 import { motion } from "framer-motion"
 const GameResults = () => {
   const {
@@ -10,35 +11,26 @@ const GameResults = () => {
     setAiChoice,
     gameResult,
     setGameResult,
+    setScore,
   } = useContext(GameContext)
   const aiOptions: string[] = ["paper", "scissors", "rock"]
 
-  let gameResultIndex: string[] = ["YOU WIN", "YOU DRAW", "YOU LOSE"]
-  const checkLogic = () => {
-    if (playerChoice === aiChoice) {
-      setGameResult(gameResultIndex[1])
-    } else if (playerChoice === "scissors" && aiChoice === "paper") {
-      setGameResult(gameResultIndex[0])
-    } else if (playerChoice === "paper" && aiChoice === "rock") {
-      setGameResult(gameResultIndex[0])
-    } else if (playerChoice === "rock" && aiChoice === "scissors") {
-      setGameResult(gameResultIndex[0])
-    } else {
-      setGameResult(gameResultIndex[2])
-    }
+  const gameIsGoing = () => {
+    const aiSelectedChoice = aiOptions[randomOption(aiOptions)]
+    setAiChoice(aiSelectedChoice)
+    const winner = whoWinsTheGame(playerChoice, aiSelectedChoice)
+    winner === "YOU WIN" && setScore(-1)
+    winner === "YOU LOSE" && setScore(1)
+    setGameResult(winner)
   }
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       let randomNumber = Math.ceil(Math.round(Math.random() * 2))
-      console.log(randomNumber)
-      randomNumber !== undefined
-        ? setAiChoice(aiOptions[randomNumber])
-        : setAiChoice("")
+      let player = aiOptions[randomNumber]
+      setAiChoice(player)
+      gameIsGoing()
     }, 1500)
-    setTimeout(() => {
-      checkLogic()
-    }, 1600)
+
     return () => {
       timeout
     }
@@ -58,7 +50,7 @@ const GameResults = () => {
         <div className="flex flex-col md:flex-col-reverse items-center">
           <div
             className={`w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full bg-${playerChoice}_gradient_2 relative grid place-items-center border-b-[10px] border-b-${playerChoice}_gradient_1 shadow-lg hover:cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-${playerChoice}_gradient_1`}
-            aria-label="YOU PICKED"
+            aria-label="YOU playerED"
           >
             {gameResult === "YOU WIN" && <GameRipple />}
             <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
@@ -70,11 +62,11 @@ const GameResults = () => {
             </div>
           </div>
           <p className="text-white text-sm md:text-lg font-bold mt-8 md:mt-0 md:mb-10">
-            YOU PICKED
+            YOU playerED
           </p>
         </div>
 
-        {gameResult !== "" && (
+        {gameResult && (
           <div className="hidden md:flex flex-col items-center mt-14">
             <p className="uppercase text-white font-bold text-4xl mb-4">
               {gameResult}
@@ -97,13 +89,13 @@ const GameResults = () => {
           ) : (
             <motion.div
               className={`w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full bg-${aiChoice}_gradient_2 relative grid place-items-center border-b-[10px] border-b-${aiChoice}_gradient_1 shadow-lg hover:cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-${aiChoice}_gradient_1 self-end ml-auto `}
-              aria-label={`the house picked ${aiChoice}`}
+              aria-label={`the house playered ${aiChoice}`}
             >
               {gameResult === "YOU LOSE" && <GameRipple />}
               <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
                 <img
                   src={`/assets/icon-${aiChoice}.svg`}
-                  alt={`the house picked ${aiChoice}`}
+                  alt={`the house playered ${aiChoice}`}
                   className="md:w-16 md:h-20"
                 />
               </div>
@@ -111,11 +103,11 @@ const GameResults = () => {
           )}
 
           <p className="text-white text-sm md:text-lg font-bold mt-8 md:mt-0 md:mb-10">
-            THE HOUSE PICKED
+            THE HOUSE playerED
           </p>
         </div>
       </div>
-      {gameResult !== "" && (
+      {gameResult && (
         <div className="flex flex-col items-center mt-14 md:hidden">
           <p className="uppercase text-white font-bold text-4xl mb-4">
             {gameResult}

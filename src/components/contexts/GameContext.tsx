@@ -11,8 +11,8 @@ type GameContextType = {
   setPlayerChoice: React.Dispatch<React.SetStateAction<string>>
   aiChoice: string
   setAiChoice: React.Dispatch<React.SetStateAction<string>>
-  gameResult: string
-  setGameResult: React.Dispatch<React.SetStateAction<string>>
+  gameResult: string | undefined
+  setGameResult: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 //type for children
 type GameContextProviderType = {
@@ -28,8 +28,13 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [score, setScore] = useState(localStorage.getItem("gameScore") ?? 0) //gets score from local stroage if score is null or undefined return 0
   const [playerChoice, setPlayerChoice] = useState<string>("") //state for setting player choice
   const [aiChoice, setAiChoice] = useState("")
-  const [gameResult, setGameResult] = useState("")
+  const [gameResult, setGameResult] = useState<string | undefined>("")
   const handleModalToggle = () => setisModalOpen((prev) => !prev) //toggles state here
+  //@ts-ignore
+  const scoreHandler = (value) => {
+    //@ts-ignore
+    setScore((prevScore) => prevScore - value)
+  }
 
   return (
     <GameContext.Provider //context provider for the entire app it wrappes
@@ -42,7 +47,7 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
         aiChoice,
         setAiChoice,
         score,
-        setScore,
+        setScore: scoreHandler,
         gameResult,
         setGameResult,
       }} //values in the context
