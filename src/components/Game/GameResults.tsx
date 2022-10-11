@@ -13,34 +13,30 @@ const GameResults = () => {
   } = useContext(GameContext)
   const aiOptions: string[] = ["paper", "scissors", "rock"]
 
-  const randomize = () => {
-    let randomNumber = Math.ceil(Math.round(Math.random() * 3))
-    return randomNumber
-  }
-  const checkLogic = (player: string, ai: string) => {
-    if (player == undefined || ai == undefined) return
-    if (player === ai) {
-      setGameResult("YOU DRAW")
-    }
-    if (player === "scissors" && ai === "paper") {
-      setGameResult("YOU WIN")
-    } else if (player === "paper" && ai === "rock") {
-      setGameResult("YOU WIN")
-    } else if (player === "rock" && ai === "scissors") {
-      setGameResult("YOU WIN")
+  let gameResultIndex: string[] = ["YOU WIN", "YOU DRAW", "YOU LOSE"]
+  const checkLogic = () => {
+    if (playerChoice === aiChoice) {
+      setGameResult(gameResultIndex[1])
+    } else if (playerChoice === "scissors" && aiChoice === "paper") {
+      setGameResult(gameResultIndex[0])
+    } else if (playerChoice === "paper" && aiChoice === "rock") {
+      setGameResult(gameResultIndex[0])
+    } else if (playerChoice === "rock" && aiChoice === "scissors") {
+      setGameResult(gameResultIndex[0])
     } else {
-      setGameResult("YOU LOSE")
+      setGameResult(gameResultIndex[2])
     }
   }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      randomize() !== null
-        ? setAiChoice(aiOptions[randomize()])
+      let randomNumber = Math.ceil(Math.round(Math.random() * 2))
+      console.log(randomNumber)
+      randomNumber !== undefined
+        ? setAiChoice(aiOptions[randomNumber])
         : setAiChoice("")
-      checkLogic(playerChoice, aiChoice)
+      checkLogic()
     }, 1500)
-
     return () => {
       timeout
     }
@@ -62,7 +58,8 @@ const GameResults = () => {
             className={`w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full bg-${playerChoice}_gradient_2 relative grid place-items-center border-b-[10px] border-b-${playerChoice}_gradient_1 shadow-lg hover:cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-${playerChoice}_gradient_1`}
             aria-label="YOU PICKED"
           >
-            <GameRipple />
+            {gameResult === "YOU WIN" ? <GameRipple /> : ""}
+            {/* <GameRipple /> */}
             <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
               <img
                 src={`/assets/icon-${playerChoice}.svg`}
@@ -76,7 +73,7 @@ const GameResults = () => {
           </p>
         </div>
 
-        {gameResult && (
+        {gameResult !== "" && (
           <div className="hidden md:flex flex-col items-center mt-14">
             <p className="uppercase text-white font-bold text-4xl mb-4">
               {gameResult}
@@ -101,6 +98,7 @@ const GameResults = () => {
               className={`w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full bg-${aiChoice}_gradient_2 relative grid place-items-center border-b-[10px] border-b-${aiChoice}_gradient_1 shadow-lg hover:cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-${aiChoice}_gradient_1 self-end ml-auto `}
               aria-label={`the house picked ${aiChoice}`}
             >
+              {gameResult === "YOU LOSE" ? <GameRipple /> : ""}
               <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
                 <img
                   src={`/assets/icon-${aiChoice}.svg`}
