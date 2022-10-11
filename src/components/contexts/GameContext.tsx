@@ -16,7 +16,7 @@ type GameContextProviderType = {
 }
 
 //context creation, assigning types to created context
-export const GameContext = createContext<GameContextType | null>(null)
+export const GameContext = createContext<GameContextType>({} as GameContextType)
 
 //provoder for context wrapper that wrapes entire application
 const GameContextProvider = ({ children }: GameContextProviderType) => {
