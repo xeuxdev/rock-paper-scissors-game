@@ -46,7 +46,7 @@ const GamePlay = () => {
         <div className="flex flex-col md:flex-col-reverse items-center">
           {aiChoice === "" ? (
             <div
-              className="bg-bg_gradient_1 w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full relative grid place-items-center shadow-lg hover:cursor-pointer outline-none animate-pulse"
+              className="bg-bg_gradient_1 w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full relative grid place-items-center shadow-lg hover:cursor-pointer outline-none animate-pulse "
               aria-label="select for scissors"
             ></div>
           ) : (
