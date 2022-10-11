@@ -7,7 +7,6 @@ type GameContextType = {
   handleModalToggle: () => void //function to handle toggle
   playerChoice: string
   setPlayerChoice: React.Dispatch<React.SetStateAction<string>>
-  handlePlayerChoice: () => void
   startGame: boolean
   setStartGame: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -24,13 +23,8 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
   const [playerChoice, setPlayerChoice] = useState<string>("") //state for setting player choice
   const [startGame, setStartGame] = useState(false)
-  const handleModalToggle = () => {
-    //function for toggling state
-    setisModalOpen((prev) => !prev) //toggles state here
-  }
-  const handlePlayerChoice = () => {
-    setStartGame((prev) => !prev)
-  }
+  const handleModalToggle = () => setisModalOpen((prev) => !prev) //toggles state here
+
   return (
     <GameContext.Provider //context provider for the entire app it wrappes
       value={{
@@ -39,7 +33,6 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
         handleModalToggle,
         playerChoice,
         setPlayerChoice,
-        handlePlayerChoice,
         startGame,
         setStartGame,
       }} //values in the context
