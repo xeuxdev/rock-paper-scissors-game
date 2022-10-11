@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { GameContext } from "../contexts/GameContext"
 
 const GamePlay = () => {
-  const { aiChoice, playerChoice, setAiChoice } = useContext(GameContext)
+  const { aiChoice, playerChoice } = useContext(GameContext)
   return (
     <div className="w-full md:max-w-[31.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
       <div className="flex flex-wrap justify-between">
