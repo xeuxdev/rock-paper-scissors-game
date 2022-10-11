@@ -41,9 +41,6 @@ const GameResults = () => {
     setAiChoice("")
     setGameResult("")
   }
-  console.log(playerChoice)
-  console.log(aiChoice)
-  console.log(gameResult)
   return (
     <div className="w-full sm:max-w-[31.25rem] md:max-w-[45.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
       <div className="flex items-center justify-between">
@@ -62,7 +59,7 @@ const GameResults = () => {
             </div>
           </div>
           <p className="text-white text-sm md:text-lg font-bold mt-8 md:mt-0 md:mb-10">
-            YOU playerED
+            YOU PLAYED
           </p>
         </div>
 
@@ -103,7 +100,7 @@ const GameResults = () => {
           )}
 
           <p className="text-white text-sm md:text-lg font-bold mt-8 md:mt-0 md:mb-10">
-            THE HOUSE playerED
+            THE HOUSE PLAYED
           </p>
         </div>
       </div>
