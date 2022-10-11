@@ -7,8 +7,8 @@ type GameContextType = {
   handleModalToggle: () => void //function to handle toggle
   playerChoice: string
   setPlayerChoice: React.Dispatch<React.SetStateAction<string>>
-  startGame: boolean
-  setStartGame: React.Dispatch<React.SetStateAction<boolean>>
+  aiChoice: string
+  setAiChoice: React.Dispatch<React.SetStateAction<string>>
 }
 //type for children
 type GameContextProviderType = {
@@ -22,7 +22,7 @@ export const GameContext = createContext<GameContextType | null>(null)
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
   const [playerChoice, setPlayerChoice] = useState<string>("") //state for setting player choice
-  const [startGame, setStartGame] = useState(false)
+  const [aiChoice, setAiChoice] = useState("")
   const handleModalToggle = () => setisModalOpen((prev) => !prev) //toggles state here
 
   return (
@@ -33,8 +33,8 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
         handleModalToggle,
         playerChoice,
         setPlayerChoice,
-        startGame,
-        setStartGame,
+        aiChoice,
+        setAiChoice,
       }} //values in the context
     >
       {children}
