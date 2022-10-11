@@ -3,12 +3,34 @@ import { GameContext } from "../contexts/GameContext"
 import GameRipple from "./GameRipple"
 import { motion } from "framer-motion"
 const GameResults = () => {
-  const { aiChoice, playerChoice, setAiChoice } = useContext(GameContext)
+  const {
+    aiChoice,
+    playerChoice,
+    setPlayerChoice,
+    setAiChoice,
+    gameResult,
+    setGameResult,
+  } = useContext(GameContext)
   const aiOptions: string[] = ["paper", "scissors", "rock"]
-  
+
   const randomize = () => {
     let randomNumber = Math.ceil(Math.round(Math.random() * 3))
     return randomNumber
+  }
+  const checkLogic = (player: string, ai: string) => {
+    if (player == undefined || ai == undefined) return
+    if (player === ai) {
+      setGameResult("YOU DRAW")
+    }
+    if (player === "scissors" && ai === "paper") {
+      setGameResult("YOU WIN")
+    } else if (player === "paper" && ai === "rock") {
+      setGameResult("YOU WIN")
+    } else if (player === "rock" && ai === "scissors") {
+      setGameResult("YOU WIN")
+    } else {
+      setGameResult("YOU LOSE")
+    }
   }
 
   useEffect(() => {
@@ -16,13 +38,22 @@ const GameResults = () => {
       randomize() !== null
         ? setAiChoice(aiOptions[randomize()])
         : setAiChoice("")
+      checkLogic(playerChoice, aiChoice)
     }, 1500)
 
-    
     return () => {
       timeout
     }
   }, [])
+
+  const handleReset = () => {
+    setPlayerChoice("")
+    setAiChoice("")
+    setGameResult("")
+  }
+  console.log(playerChoice)
+  console.log(aiChoice)
+  console.log(gameResult)
   return (
     <div className="w-full sm:max-w-[31.25rem] md:max-w-[45.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
       <div className="flex items-center justify-between">
@@ -45,14 +76,19 @@ const GameResults = () => {
           </p>
         </div>
 
-        <div className="hidden md:flex flex-col items-center mt-14">
-          <p className="uppercase text-white font-bold text-4xl mb-4">
-            you lose
-          </p>
-          <button className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center">
-            play again
-          </button>
-        </div>
+        {gameResult && (
+          <div className="hidden md:flex flex-col items-center mt-14">
+            <p className="uppercase text-white font-bold text-4xl mb-4">
+              {gameResult}
+            </p>
+            <button
+              className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center"
+              onClick={handleReset}
+            >
+              play again
+            </button>
+          </div>
+        )}
 
         <div className="flex flex-col md:flex-col-reverse items-center">
           {aiChoice === "" ? (
@@ -80,12 +116,19 @@ const GameResults = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center mt-14 md:hidden">
-        <p className="uppercase text-white font-bold text-4xl mb-4">you lose</p>
-        <button className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center">
-          play again
-        </button>
-      </div>
+      {gameResult !== "" && (
+        <div className="flex flex-col items-center mt-14 md:hidden">
+          <p className="uppercase text-white font-bold text-4xl mb-4">
+            {gameResult}
+          </p>
+          <button
+            className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center"
+            onClick={handleReset}
+          >
+            play again
+          </button>
+        </div>
+      )}
     </div>
   )
 }
