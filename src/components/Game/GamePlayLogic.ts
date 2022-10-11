@@ -1,24 +1,24 @@
 // Randomize array option for bot
 
-const randomOption = (arr: any) => Math.floor(Math.random() * arr.length)
+const randomOption = (arr: string[]) => Math.floor(Math.random() * arr.length)
 
 // Logic for the winner of the game
 
-const whoWinsTheGame = (player: any, bot: any) => {
+const whoWinsTheGame = (player: string, bot: string) => {
   const result =
-    player === "rock" && bot === "paper"
+    player === "rock" && bot === "paper" //checks for player == rock
       ? "YOU LOSE"
       : player === "rock" && bot === "scissors"
       ? "YOU WIN"
       : player === "rock" && bot === "rock"
       ? "It's A TIE"
-      : player === "paper" && bot === "paper"
+      : player === "paper" && bot === "paper" //checls for player == paper
       ? "It's A TIE"
       : player === "paper" && bot === "scissors"
       ? "YOU LOSE"
       : player === "paper" && bot === "rock"
       ? "YOU WIN"
-      : player === "scissors" && bot === "paper"
+      : player === "scissors" && bot === "paper" //checks for player == scissors
       ? "YOU WIN"
       : player === "scissors" && bot === "scissors"
       ? "It's A TIE"
