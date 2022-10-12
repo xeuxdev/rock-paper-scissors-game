@@ -11,7 +11,6 @@ This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](h
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 ## Overview
@@ -41,14 +40,13 @@ If the player wins, they gain 1 point. If the computer wins, the player loses on
 
 ### Links
 
-Live Site URL: [click here](https://rock-paper-scissors-game-et-moi.netlify.app/)
+Live Site: [click here](https://rock-paper-scissors-game-et-moi.netlify.app/)
 
 ## My process
 
 ### Built with
 
 - Semantic HTML5 markup
-- CSS custom properties
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
@@ -60,20 +58,15 @@ Live Site URL: [click here](https://rock-paper-scissors-game-et-moi.netlify.app/
 
 ### What I learned
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+- One thing i'm proud of doing this project is: i was able to figure out how to use the React Context API with TypeScript
 
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉")
-}
+export const GameContext = createContext<GameContextType>({} as GameContextType)
 ```
 
-### Useful resources
+- Managing and modifying various states across the entire application
 
+- Logic for the Game or AI found in the gameLogic File [GamePlayLogic](src/components/Game/GamePlayLogic.ts)
 
 ## Author
 
