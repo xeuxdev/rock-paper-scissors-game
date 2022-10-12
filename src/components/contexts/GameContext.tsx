@@ -30,11 +30,6 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [aiChoice, setAiChoice] = useState("")
   const [gameResult, setGameResult] = useState<string | undefined>("")
   const handleModalToggle = () => setisModalOpen((prev) => !prev) //toggles state here
-  //@ts-ignore
-  const scoreHandler = (value) => {
-    //@ts-ignore
-    setScore((prevScore) => prevScore - value)
-  }
 
   return (
     <GameContext.Provider //context provider for the entire app it wrappes
@@ -47,7 +42,7 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
         aiChoice,
         setAiChoice,
         score,
-        setScore: scoreHandler,
+        setScore,
         gameResult,
         setGameResult,
       }} //values in the context

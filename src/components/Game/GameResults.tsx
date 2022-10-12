@@ -11,6 +11,7 @@ const GameResults = () => {
     setAiChoice,
     gameResult,
     setGameResult,
+    score,
     setScore,
   } = useContext(GameContext)
   const aiOptions: string[] = ["paper", "scissors", "rock"]
@@ -19,10 +20,15 @@ const GameResults = () => {
     const aiSelectedChoice = aiOptions[randomOption(aiOptions)]
     setAiChoice(aiSelectedChoice)
     const winner = whoWinsTheGame(playerChoice, aiSelectedChoice)
-    winner === "YOU WIN" && setScore(-1)
-    winner === "YOU LOSE" && setScore(1)
+    //@ts-ignore
+    winner === "YOU WIN" && setScore((prevScore) => prevScore + 1)
+    //@ts-ignore
+    winner === "YOU LOSE" && setScore((prevScore) => prevScore - 1)
+    winner === "It's A TIE" && setScore((prevScore) => prevScore)
+    localStorage.setItem("gameScore", score)
     setGameResult(winner)
   }
+  console.log(score)
   useEffect(() => {
     const timeout = setTimeout(() => {
       let randomNumber = Math.ceil(Math.round(Math.random() * 2))
