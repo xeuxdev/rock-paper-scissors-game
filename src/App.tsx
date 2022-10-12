@@ -1,13 +1,8 @@
 import { AnimatePresence } from "framer-motion"
-import { useContext } from "react"
-import GameContextProvider, {
-  GameContext,
-} from "./components/contexts/GameContext"
+import GameContextProvider from "./components/contexts/GameContext"
 import { Header, ModalOpen, Modal, Game, Reset } from "./components/index"
 
 function App() {
-  const { gameResult } = useContext(GameContext)
-
   return (
     // provider for context
     <GameContextProvider>
