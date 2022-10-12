@@ -1,8 +1,19 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 
 const Header = () => {
-  const { score } = useContext(GameContext) //gets score from 
+  const { score, setScore } = useContext(GameContext) //gets score from
+
+  // useEffect(() => {
+  //   const setScoreUpdate = () => {
+  //     //@ts-ignore
+  //     setScore(localStorage.getItem("gameScore"))
+  //   }
+  //   return () => {
+  //     setScoreUpdate()
+  //   }
+  // }, [score])
+
   return (
     <div className="w-full md:max-w-[43.75rem] mx-auto rounded-lg md:rounded-xl border-[3px] border-Header h-24 md:h-36 p-3 flex items-center justify-between mb-24 md:mb-14">
       <div className="logo pl-4">

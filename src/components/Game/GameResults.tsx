@@ -21,11 +21,17 @@ const GameResults = () => {
     setAiChoice(aiSelectedChoice)
     const winner = whoWinsTheGame(playerChoice, aiSelectedChoice)
     //@ts-ignore
-    winner === "YOU WIN" && setScore((prevScore) => prevScore + 1)
-    //@ts-ignore
-    winner === "YOU LOSE" && setScore((prevScore) => prevScore - 1)
-    winner === "It's A TIE" && setScore((prevScore) => prevScore)
-    localStorage.setItem("gameScore", score)
+    winner === "YOU WIN"
+      ? //@ts-ignore
+        setScore((prevScore) => parseInt(prevScore) + 1)
+      : winner === "YOU LOSE"
+      ? //@ts-ignore
+        setScore((prevScore) => parseInt(prevScore) - 1)
+      : setScore(score)
+
+    //  &&
+    // winner === "It's A TIE" &&
+
     setGameResult(winner)
   }
   console.log(score)
@@ -41,6 +47,16 @@ const GameResults = () => {
       timeout
     }
   }, [])
+
+  useEffect(() => {
+    const setScoreUpdate = () => {
+      //@ts-ignore
+      localStorage.setItem("gameScore", score)
+    }
+    return () => {
+      setScoreUpdate()
+    }
+  }, [score])
 
   const handleReset = () => {
     setPlayerChoice("")
