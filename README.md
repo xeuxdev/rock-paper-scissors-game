@@ -37,7 +37,7 @@ If the player wins, they gain 1 point. If the computer wins, the player loses on
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![screenshot](public/screenshot.png)
 
 ### Links
 
@@ -53,7 +53,10 @@ Live Site URL: [click here](https://rock-paper-scissors-game-et-moi.netlify.app/
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
+- [TypeScript](https://www.typescriptlang.org/) - for Type Consistency
+- [Vite Js](https://vitejs.dev/) - module bundler and build tool
 - [tailwindCSS](https://tailwindcss.com/) - For styles
+- [Framer Motion](https://www.framer.com/motion/) - For Animation
 
 ### What I learned
 
