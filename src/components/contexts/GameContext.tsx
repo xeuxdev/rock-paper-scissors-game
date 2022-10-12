@@ -5,8 +5,10 @@ type GameContextType = {
   isModalOpen: boolean //toggles modal
   setisModalOpen: React.Dispatch<React.SetStateAction<boolean>> //modal toggler
   handleModalToggle: () => void //function to handle toggle
-  score: string | number
-  setScore: React.Dispatch<React.SetStateAction<string | number>>
+  playerScore: string | number
+  setPlayerScore: React.Dispatch<React.SetStateAction<string | number>>
+  aiScore: string | number
+  setAiScore: React.Dispatch<React.SetStateAction<string | number>>
   playerChoice: string
   setPlayerChoice: React.Dispatch<React.SetStateAction<string>>
   aiChoice: string
@@ -25,7 +27,10 @@ export const GameContext = createContext<GameContextType>({} as GameContextType)
 //provoder for context wrapper that wrapes entire application
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
-  const [score, setScore] = useState(localStorage.getItem("gameScore") ?? 0) //gets score from local stroage if score is null or undefined return 0
+  const [playerScore, setPlayerScore] = useState(
+    localStorage.getItem("playerScore") ?? 0
+  ) //gets score from local stroage if score is null or undefined return 0
+  const [aiScore, setAiScore] = useState(localStorage.getItem("aiScore") ?? 0) //gets score from local stroage if score is null or undefined return 0
   const [playerChoice, setPlayerChoice] = useState<string>("") //state for setting player choice
   const [aiChoice, setAiChoice] = useState("")
   const [gameResult, setGameResult] = useState<string | undefined>("")
@@ -41,8 +46,10 @@ const GameContextProvider = ({ children }: GameContextProviderType) => {
         setPlayerChoice,
         aiChoice,
         setAiChoice,
-        score,
-        setScore,
+        playerScore,
+        setPlayerScore,
+        aiScore,
+        setAiScore,
         gameResult,
         setGameResult,
       }} //values in the context
