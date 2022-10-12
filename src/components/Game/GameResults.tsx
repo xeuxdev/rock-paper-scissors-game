@@ -16,7 +16,7 @@ const GameResults = () => {
   } = useContext(GameContext)
   const aiOptions: string[] = ["paper", "scissors", "rock"]
 
-  const gameIsGoing = () => {
+  const gameInPlay = () => {
     const aiSelectedChoice = aiOptions[randomOption(aiOptions)]
     setAiChoice(aiSelectedChoice)
     const winner = whoWinsTheGame(playerChoice, aiSelectedChoice)
@@ -31,13 +31,12 @@ const GameResults = () => {
 
     setGameResult(winner)
   }
-  console.log(score)
   useEffect(() => {
     const timeout = setTimeout(() => {
       let randomNumber = Math.ceil(Math.round(Math.random() * 2))
       let player = aiOptions[randomNumber]
       setAiChoice(player)
-      gameIsGoing()
+      gameInPlay()
     }, 1500)
 
     return () => {
