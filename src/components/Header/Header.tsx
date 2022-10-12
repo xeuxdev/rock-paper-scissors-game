@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"
 import { GameContext } from "../contexts/GameContext"
 
 const Header = () => {
-  const { score } = useContext(GameContext) //gets score from
+  const { playerScore, aiScore } = useContext(GameContext) //gets score from context
 
   return (
     <div className="w-full md:max-w-[43.75rem] mx-auto rounded-lg md:rounded-xl border-[3px] border-Header h-24 md:h-36 p-3 flex items-center justify-between mb-24 md:mb-14">
@@ -20,16 +20,16 @@ const Header = () => {
             player
           </p>
           <p className="text-4xl md:text-6xl text-dark_Text font-bold">
-            {score}
+            {playerScore}
           </p>
         </div>
-        <span className="block w-[2px] h-5 bg-Header mx-5"></span>
+        <span className="block w-[2px] h-10 mt-3 bg-Header mx-5"></span>
         <div className="flex items-center flex-col">
           <p className="uppercase text-score_Text text-xs md:text-sm font-semibold">
             AI
           </p>
           <p className="text-4xl md:text-6xl text-dark_Text font-bold">
-            {score}
+            {aiScore}
           </p>
         </div>
       </div>

@@ -11,8 +11,10 @@ const GameResults = () => {
     setAiChoice,
     gameResult,
     setGameResult,
-    score,
-    setScore,
+    playerScore,
+    setPlayerScore,
+    aiScore,
+    setAiScore,
   } = useContext(GameContext)
   const aiOptions: string[] = ["paper", "scissors", "rock"]
 
@@ -23,12 +25,13 @@ const GameResults = () => {
     //@ts-ignore
     winner === "YOU WIN"
       ? //@ts-ignore
-        setScore((prevScore) => parseInt(prevScore) + 1)
+        setPlayerScore((prevScore) => parseInt(prevScore) + 1)
       : winner === "YOU LOSE"
       ? //@ts-ignore
-        setScore((prevScore) => parseInt(prevScore) - 1)
-      : setScore(score)
+        setAiScore((prevScore) => parseInt(prevScore) + 1)
+      : setPlayerScore(playerScore)
 
+    if (winner === "It's A TIE") setAiScore(aiScore)
     setGameResult(winner)
   }
   useEffect(() => {
@@ -45,14 +48,19 @@ const GameResults = () => {
   }, [])
 
   useEffect(() => {
-    const setScoreUpdate = () => {
+    const setPlayerScoreUpdate = () => {
       //@ts-ignore
-      localStorage.setItem("gameScore", score)
+      localStorage.setItem("playerScore", playerScore)
+    }
+    const setAiScoreUpdate = () => {
+      //@ts-ignore
+      localStorage.setItem("aiScore", aiScore)
     }
     return () => {
-      setScoreUpdate()
+      setPlayerScoreUpdate()
+      setAiScoreUpdate()
     }
-  }, [score])
+  }, [playerScore, aiScore])
 
   const handleReset = () => {
     setPlayerChoice("")
