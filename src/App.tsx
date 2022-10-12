@@ -4,6 +4,7 @@ import GameContextProvider, {
   GameContext,
 } from "./components/contexts/GameContext"
 import { Header, ModalOpen, Modal, Game } from "./components/index"
+import Reset from "./components/Reset/Reset"
 
 function App() {
   const game = useContext(GameContext)
@@ -15,6 +16,7 @@ function App() {
         <Header />
         <Game />
         <ModalOpen />
+        <Reset />
         <AnimatePresence
           initial={false}
           mode="wait"
