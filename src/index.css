@@ -23,8 +23,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); ripple effect from one side*/
-  width: 150%;
-  height: 170%;
+  width: 25.25rem;
+  height: 25.25rem;
   position: absolute;
   background: #c0c1c0;
   z-index: -1;
