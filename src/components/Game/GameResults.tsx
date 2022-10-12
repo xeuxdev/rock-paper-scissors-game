@@ -29,9 +29,6 @@ const GameResults = () => {
         setScore((prevScore) => parseInt(prevScore) - 1)
       : setScore(score)
 
-    //  &&
-    // winner === "It's A TIE" &&
-
     setGameResult(winner)
   }
   console.log(score)
@@ -90,12 +87,18 @@ const GameResults = () => {
             <p className="uppercase text-white font-bold text-4xl mb-4">
               {gameResult}
             </p>
-            <button
+            <motion.button
               className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center"
               onClick={handleReset}
+              initial={{ scale: 1 }}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.3, ease: "easeInOut" },
+              }}
+              whileTap={{ scale: 0.9 }}
             >
               play again
-            </button>
+            </motion.button>
           </div>
         )}
 
@@ -131,12 +134,18 @@ const GameResults = () => {
           <p className="uppercase text-white font-bold text-4xl mb-4">
             {gameResult}
           </p>
-          <button
+          <motion.button
             className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center"
             onClick={handleReset}
+            initial={{ scale: 1 }}
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.3, ease: "easeInOut" },
+            }}
+            whileTap={{ scale: 0.9 }}
           >
             play again
-          </button>
+          </motion.button>
         </div>
       )}
     </div>
