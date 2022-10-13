@@ -10,16 +10,12 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest,
-      includeAssets: [
-        "/assets/logo.svg",
-        "robots.txt",
-        "icons/apple-icon-180.png",
-      ],
+      includeAssets: ["/icon.jpeg", "robots.txt", "icons/apple-icon-180.png"],
       devOptions: {
         enabled: false,
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html}", "**/*.{svg,png}"],
+        globPatterns: ["**/*.{js,css,html}", "**/*.{svg,png,jpeg}"],
       },
     }),
   ],
