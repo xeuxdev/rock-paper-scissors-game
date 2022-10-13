@@ -28,9 +28,9 @@ export const GameContext = createContext<GameContextType>({} as GameContextType)
 const GameContextProvider = ({ children }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
   const [playerScore, setPlayerScore] = useState(
-    localStorage.getItem("playerScore") ?? 0
+    JSON.parse(localStorage.getItem("playerScore")) ?? 0
   ) //gets score from local stroage if score is null or undefined return 0
-  const [aiScore, setAiScore] = useState(localStorage.getItem("aiScore") ?? 0) //gets score from local stroage if score is null or undefined return 0
+  const [aiScore, setAiScore] = useState(JSON.parse(localStorage.getItem("aiScore")) ?? 0) //gets score from local stroage if score is null or undefined return 0
   const [playerChoice, setPlayerChoice] = useState<string>("") //state for setting player choice
   const [aiChoice, setAiChoice] = useState("")
   const [gameResult, setGameResult] = useState<string | undefined>("")
