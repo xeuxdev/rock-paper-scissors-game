@@ -1,8 +1,31 @@
-import { defineConfig } from "vite"
+import * as path from "path"
 import react from "@vitejs/plugin-react"
-import { VitePWA } from 'vite-plugin-pwa'
+import { defineConfig } from "vite"
+import { VitePWA } from "vite-plugin-pwa"
+import manifest from "./manifest.json"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA()],
+  plugins: [
+    react(),
+    VitePWA({
+      manifest,
+      includeAssets: [
+        "/assets/logo.svg",
+        "robots.txt",
+        "icons/apple-icon-180.png",
+      ],
+      devOptions: {
+        enabled: false,
+      },
+      workbox: {
+        globPatterns: ["**/*.{js,css,html}", "**/*.{svg,png}"],
+      },
+    }),
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 })
