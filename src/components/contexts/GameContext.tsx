@@ -5,10 +5,10 @@ type GameContextType = {
   isModalOpen: boolean //toggles modal
   setisModalOpen: React.Dispatch<React.SetStateAction<boolean>> //modal toggler
   handleModalToggle: () => void //function to handle toggle
-  playerScore: string
-  setPlayerScore: React.Dispatch<React.SetStateAction<string>>
-  aiScore: string
-  setAiScore: React.Dispatch<React.SetStateAction<string>>
+  playerScore: string | null
+  setPlayerScore: React.Dispatch<React.SetStateAction<string | null>>
+  aiScore: string | null
+  setAiScore: React.Dispatch<React.SetStateAction<string | null>>
   playerChoice: string
   setPlayerChoice: React.Dispatch<React.SetStateAction<string>>
   aiChoice: string
