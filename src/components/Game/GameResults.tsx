@@ -50,11 +50,11 @@ const GameResults = () => {
   useEffect(() => {
     const setPlayerScoreUpdate = () => {
       //@ts-ignore
-      localStorage.setItem("playerScore", playerScore)
+      localStorage.setItem("playerScore", JSON.stringify(playerScore))
     }
     const setAiScoreUpdate = () => {
       //@ts-ignore
-      localStorage.setItem("aiScore", aiScore)
+      localStorage.setItem("aiScore", JSON.stringify(aiScore))
     }
     return () => {
       setPlayerScoreUpdate()
