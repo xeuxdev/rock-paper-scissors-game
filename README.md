@@ -40,7 +40,7 @@ If the player wins, they gain 1 point. If the computer wins, the player loses on
 
 ### Links
 
-Live Site: [click here](https://rock-paper-scissors-game-et-moi.netlify.app/)
+Live Site: [click here](https://rps-game-et-moi.netlify.app/)
 
 ## My process
 
