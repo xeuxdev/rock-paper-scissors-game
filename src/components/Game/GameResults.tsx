@@ -16,49 +16,34 @@ const GameResults = () => {
     aiScore,
     setAiScore,
   } = useContext(GameContext)
-  const aiOptions: string[] = ["paper", "scissors", "rock"]
+  const aiOptions = ["paper", "scissors", "rock"]
 
   const gameInPlay = () => {
     const aiSelectedChoice = aiOptions[randomOption(aiOptions)]
     setAiChoice(aiSelectedChoice)
     const winner = whoWinsTheGame(playerChoice, aiSelectedChoice)
-    //@ts-ignore
-    winner === "YOU WIN"
-      ? //@ts-ignore
-        setPlayerScore((prevScore) => parseInt(prevScore) + 1)
-      : winner === "YOU LOSE"
-      ? //@ts-ignore
-        setAiScore((prevScore) => parseInt(prevScore) + 1)
-      : setPlayerScore(playerScore)
 
-    if (winner === "It's A TIE") setAiScore(aiScore)
+    if (winner === "It's A TIE") {
+      setAiScore(aiScore)
+    } else {
+      winner === "YOU WIN"
+        ? setPlayerScore((prevScore) => prevScore + 1)
+        : winner === "YOU LOSE"
+        ? setAiScore((prevScore) => prevScore + 1)
+        : setPlayerScore(playerScore)
+    }
+
     setGameResult(winner)
   }
   useEffect(() => {
     const timeout = setTimeout(() => {
-      let randomNumber = Math.ceil(Math.round(Math.random() * 2))
-      let player = aiOptions[randomNumber]
-      setAiChoice(player)
       gameInPlay()
     }, 1500)
 
     return () => {
-      timeout
+      clearTimeout(timeout)
     }
   }, [])
-
-  useEffect(() => {
-    const setPlayerScoreUpdate = () => {
-      localStorage.setItem("playerScore", JSON.stringify(playerScore))
-    }
-    const setAiScoreUpdate = () => {
-      localStorage.setItem("aiScore", JSON.stringify(aiScore))
-    }
-    return () => {
-      setPlayerScoreUpdate()
-      setAiScoreUpdate()
-    }
-  }, [playerScore, aiScore])
 
   const handleReset = () => {
     setPlayerChoice("")
@@ -68,6 +53,7 @@ const GameResults = () => {
   return (
     <div className="w-full sm:max-w-[31.25rem] md:max-w-[48.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
       <div className="flex items-center justify-between">
+        {/* player */}
         <div className="flex flex-col md:flex-col-reverse items-center">
           <div
             className={`w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full bg-${playerChoice}_gradient_2  grid place-items-center border-b-[10px] border-b-${playerChoice}_gradient_1 shadow-lg hover:cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-${playerChoice}_gradient_1`}
@@ -87,6 +73,7 @@ const GameResults = () => {
           </p>
         </div>
 
+        {/* for desktop */}
         {gameResult && (
           <div className="hidden md:flex flex-col items-center mt-14">
             <p className="uppercase text-white font-bold text-4xl mb-4">
@@ -109,6 +96,7 @@ const GameResults = () => {
 
         <div className="flex flex-col md:flex-col-reverse items-center">
           {aiChoice === "" ? (
+            // loader
             <div
               className="bg-bg_gradient_1 w-[8.75rem] h-[8.75rem] md:w-[12.5rem] md:h-[12.5rem] rounded-full relative grid place-items-center shadow-lg hover:cursor-pointer outline-none animate-pulse "
               aria-label="select for scissors"
@@ -134,6 +122,8 @@ const GameResults = () => {
           </p>
         </div>
       </div>
+
+      {/* mobile result */}
       {gameResult && (
         <div className="flex flex-col items-center mt-14 md:hidden">
           <p className="uppercase text-white font-bold text-4xl mb-4">
