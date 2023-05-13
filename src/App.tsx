@@ -1,7 +1,11 @@
 import GameContextProvider from "./components/contexts/GameContext"
+import { useState, useEffect } from "react"
 import { Header, ModalOpen, Modal, Game, Reset } from "./components/index"
+import PopUp from "./components/Modal/PopUp"
 
 function App() {
+  const [showPopUp, setShowPopUp] = useState(true)
+
   return (
     // provider for context
     <GameContextProvider>
@@ -15,6 +19,7 @@ function App() {
           <ModalOpen />
         </div>
       </div>
+      {showPopUp && <PopUp setShowPopUp={setShowPopUp} />}
     </GameContextProvider>
   )
 }
