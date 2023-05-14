@@ -8,8 +8,7 @@ import cors from "cors"
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: ["https://rps-game-et-moi.netlify.app/", "http://localhost:5173"],
-    // origin: ["https://rps-game-et-moi.netlify.app/"],
+    origin: ["https://rps-game-et-moi.netlify.app/"],
     methods: ["GET", "Post"],
   },
 })
