@@ -17,7 +17,7 @@ const Header = () => {
       <div className="score flex items-center h-full px-5 md:px-7 rounded-md bg-white py-1.5">
         <div className="flex items-center flex-col">
           <p className="uppercase text-score_Text text-xs md:text-sm font-semibold">
-            player
+            You
           </p>
           <p className="text-4xl md:text-6xl text-dark_Text font-bold">
             {playerScore}

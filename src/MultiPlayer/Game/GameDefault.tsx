@@ -1,9 +1,33 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { motion } from "framer-motion"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
 
 const GameDefault = () => {
-  const { setPlayerChoice } = useContext(MultiPlayerGameContext)
+  const { setPlayerChoice, socket } = useContext(MultiPlayerGameContext)
+
+  useEffect(() => {
+    socket.on("joined_room", (data) => {
+      console.log(data, "joined_room")
+    })
+  }, [])
+
+  const handlePlayerChoice = (choice: string) => {
+    setPlayerChoice(choice)
+    const isCreator = localStorage.getItem("creator")
+    const isJoined = localStorage.getItem("joined")
+
+    const username =
+      isCreator == "true"
+        ? localStorage.getItem("player1Username")
+        : localStorage.getItem("player2Username")
+
+    socket.emit("send_choice", {
+      choice,
+      username,
+      roomId: localStorage.getItem("roomId"),
+      role: isCreator == "true" ? "creator" : "joined",
+    })
+  }
 
   return (
     <div className="w-full md:max-w-[31.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
@@ -17,7 +41,7 @@ const GameDefault = () => {
           whileHover={{ scale: 1.1 }}
           whileFocus={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setPlayerChoice("paper")}
+          onClick={() => handlePlayerChoice("paper")}
         >
           <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
             <img
@@ -36,7 +60,7 @@ const GameDefault = () => {
           whileHover={{ scale: 1.1 }}
           whileFocus={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setPlayerChoice("scissors")}
+          onClick={() => handlePlayerChoice("scissors")}
         >
           <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
             <img
@@ -56,7 +80,7 @@ const GameDefault = () => {
             whileHover={{ scale: 1.1 }}
             whileFocus={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => setPlayerChoice("rock")}
+            onClick={() => handlePlayerChoice("rock")}
           >
             <div className="bg-white w-[6.25rem] h-[6.25rem] md:w-[9.6875rem] md:h-[9.6875rem] rounded-full grid place-items-center border-t-[10px] border-t-bg_gradient_1/30">
               <img

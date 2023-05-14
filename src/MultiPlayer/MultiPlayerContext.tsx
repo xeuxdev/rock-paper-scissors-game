@@ -1,4 +1,5 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
+import { Socket, io } from "socket.io-client"
 
 //types for variables and values that reside in context
 type MultiPlayerGameContextType = {
@@ -15,6 +16,7 @@ type MultiPlayerGameContextType = {
   setPlayer2Choice: React.Dispatch<React.SetStateAction<string>>
   gameResult: string | undefined
   setGameResult: React.Dispatch<React.SetStateAction<string | undefined>>
+  socket: Socket
 }
 //type for children
 type GameContextProviderType = {
@@ -26,21 +28,44 @@ export const MultiPlayerGameContext = createContext<MultiPlayerGameContextType>(
   {} as MultiPlayerGameContextType
 )
 
+export const socket = io("http://localhost:3000")
+
 //provoder for context wrapper that wrapes entire application
 const MultiPlayerGameContextProvider = ({
   children,
 }: GameContextProviderType) => {
-  const [isModalOpen, setisModalOpen] = useState(false) //state for toggling modal
+  const [isModalOpen, setisModalOpen] = useState(false)
   const [playerScore, setPlayerScore] = useState<number>(
     JSON.parse(`${localStorage.getItem("multi-playerScore")}`) ?? 0
-  ) //gets score from local stroage if score is null or undefined return 0
+  )
   const [player2Score, setPlayer2Score] = useState<number>(
     JSON.parse(`${localStorage.getItem("multi-player2Score")}`) ?? 0
-  ) //gets score from local stroage if score is null or undefined return 0
-  const [playerChoice, setPlayerChoice] = useState("") //state for setting player choice
+  )
+  const [playerChoice, setPlayerChoice] = useState("")
   const [player2Choice, setPlayer2Choice] = useState("")
   const [gameResult, setGameResult] = useState<string | undefined>("")
-  const handleModalToggle = () => setisModalOpen((prev) => !prev) //toggles state here
+  const handleModalToggle = () => setisModalOpen((prev) => !prev)
+
+  // inti socket
+
+  useEffect(() => {
+    const connect = () => {
+      socket.on("connect", () => console.log(socket.id))
+    }
+
+    socket.on("connect_error", () => {
+      setTimeout(() => socket.connect(), 5000)
+    })
+
+    return () => {
+      connect()
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(player2Choice, "player2Choice")
+    console.log(playerChoice, "playerChoice")
+  }, [player2Choice, playerChoice])
 
   return (
     <MultiPlayerGameContext.Provider //context provider for the entire app it wrappes
@@ -58,6 +83,7 @@ const MultiPlayerGameContextProvider = ({
         setPlayer2Score,
         gameResult,
         setGameResult,
+        socket,
       }} //values in the context
     >
       {children}

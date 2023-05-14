@@ -4,13 +4,13 @@ const randomOption = (arr: string[]) => Math.floor(Math.random() * arr.length)
 
 // Logic for the winner of the game
 
-const whoWinsTheGame = (player: string, bot: string) => {
+const whoWinsTheGame = (player: string, player2: string) => {
   const result =
-    player === bot
+    player === player2
       ? "It's A TIE"
-      : (player === "rock" && bot === "scissors") ||
-        (player === "paper" && bot === "rock") ||
-        (player === "scissors" && bot === "paper")
+      : (player === "rock" && player2 === "scissors") ||
+        (player === "paper" && player2 === "rock") ||
+        (player === "scissors" && player2 === "paper")
       ? "YOU WIN"
       : "YOU LOSE"
   return result

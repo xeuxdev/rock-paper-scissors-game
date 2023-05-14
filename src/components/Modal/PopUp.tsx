@@ -15,12 +15,12 @@ function PopUp({ setShowPopUp }: Props) {
           <div className="flex items-center gap-5">
             <Link
               to={"/multiplayer"}
-              className="uppercase w-32 h-11 grid place-items-center  text-Header font-bold border-2 border-Header rounded-lg hover:text-white duration-300 hover:border-white z-30"
+              className="uppercase w-32 h-11 grid place-items-center  text-Header font-bold border-2 border-Header rounded-lg hover:bg-Header hover:border-white hover:text-white duration-300 z-30"
             >
               Multiplayer
             </Link>
             <button
-              className="uppercase w-32 h-11 grid place-items-center  text-Header font-bold border-2 border-Header rounded-lg hover:text-white duration-300 hover:border-white z-30"
+              className="uppercase w-32 h-11 grid place-items-center  text-Header font-bold border-2 border-Header rounded-lg  duration-300 hover:bg-Header hover:border-white hover:text-white z-30"
               onClick={() => setShowPopUp(false)}
             >
               Computer

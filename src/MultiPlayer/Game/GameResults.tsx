@@ -2,10 +2,7 @@ import { useContext, useEffect } from "react"
 import GameRipple from "./GameRipple"
 import { motion } from "framer-motion"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
-import {
-  randomOption,
-  whoWinsTheGame,
-} from "../../components/Game/GamePlayLogic"
+import { whoWinsTheGame } from "../../components/Game/GamePlayLogic"
 const GameResults = () => {
   const {
     player2Choice,
@@ -18,41 +15,78 @@ const GameResults = () => {
     setPlayerScore,
     player2Score,
     setPlayer2Score,
+    socket,
   } = useContext(MultiPlayerGameContext)
-  const aiOptions = ["paper", "scissors", "rock"]
 
-  const gameInPlay = () => {
-    const aiSelectedChoice = aiOptions[randomOption(aiOptions)]
-    setPlayer2Choice(aiSelectedChoice)
-    const winner = whoWinsTheGame(playerChoice, aiSelectedChoice)
+  // const receivedChoice = () => {
 
-    if (winner === "It's A TIE") {
-      setPlayer2Score(player2Score)
-    } else {
-      winner === "YOU WIN"
-        ? setPlayerScore((prevScore) => prevScore + 1)
-        : winner === "YOU LOSE"
-        ? setPlayer2Score((prevScore) => prevScore + 1)
-        : setPlayerScore(playerScore)
-    }
+  // }
 
-    setGameResult(winner)
-  }
+  // const gameInPlay = () => {
+  //   console.log(player2Choice)
+
+  //   const winner = whoWinsTheGame(playerChoice, player2Choice)
+
+  //   if (winner === "It's A TIE") {
+  //     setPlayer2Score(player2Score)
+  //   } else {
+  //     winner === "YOU WIN"
+  //       ? setPlayerScore((prevScore) => prevScore + 1)
+  //       : winner === "YOU LOSE"
+  //       ? setPlayer2Score((prevScore) => prevScore + 1)
+  //       : setPlayerScore(playerScore)
+  //   }
+  //   setGameResult(winner)
+  // }
+
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      gameInPlay()
-    }, 1500)
+    if (playerChoice !== "" && player2Choice !== "") {
+      const winner = whoWinsTheGame(playerChoice, player2Choice)
 
-    return () => {
-      clearTimeout(timeout)
+      // if (winner === "It's A TIE") {
+      //   setPlayer2Score(player2Score)
+      //   setPlayerScore(playerScore)
+      // } else {
+      //   winner === "YOU WIN"
+      //     ? setPlayerScore((prevScore) => prevScore + 1)
+      //     : winner === "YOU LOSE"
+      //     ? setPlayer2Score((prevScore) => prevScore + 1)
+      //     : setPlayerScore(playerScore)
+      // }
+
+      switch (winner) {
+        case "It's A TIE":
+          setPlayer2Score(player2Score)
+          setPlayerScore(playerScore)
+
+          break
+        case "YOU LOSE":
+          setPlayer2Score((prevScore) => prevScore + 1)
+          break
+
+        case "YOU WIN":
+          setPlayerScore((prevScore) => prevScore + 1)
+          break
+        default:
+          setPlayer2Score(player2Score)
+          setPlayerScore(playerScore)
+          break
+      }
+
+      setGameResult(winner)
     }
-  }, [])
+  }, [player2Choice, playerChoice])
 
   const handleReset = () => {
     setPlayerChoice("")
     setPlayer2Choice("")
     setGameResult("")
+
+    socket.emit("reset", {
+      roomId: localStorage.getItem("roomId"),
+    })
   }
+
   return (
     <div className="w-full sm:max-w-[31.25rem] md:max-w-[48.25rem] h-[18.75rem] md:h-[28.125rem] mx-auto relative">
       <div className="flex items-center justify-between">

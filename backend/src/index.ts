@@ -30,10 +30,37 @@ app.post("/room/:id", (req, res) => {
 io.on("connection", (socket) => {
   console.log("a user connected =>", socket.id)
 
-  // socket.on('join_room', (data) => {
-  //   const { username, room } = data; // Data sent from client when join_room event emitted
-  //   socket.join(room); // Join the user to a socket room
-  // });
+  socket.on("send_choice", (data) => {
+    const { username, choice, roomId, role } = data
+
+    // console.log(roomId)
+
+    console.log(username, choice, roomId, role)
+    if (roomId === "") {
+      // socket.broadcast.emit("received_choice", data)
+      console.log("no room joined")
+    } else {
+      socket.to(roomId).emit("received_choice", data)
+    }
+
+    // socket.to(roomId).emit("received_choice", data)
+    // socket.to(roomId).emit("received_choice", data)
+  })
+
+  socket.on("join_room", (data, cb) => {
+    const { username, roomId } = data // Data sent from client when join_room event emitted
+    // Join the user to a socket room
+    socket.join(roomId)
+    cb("Joined room", roomId, "as ", username)
+
+    socket.to(roomId).emit("joined_room", username)
+    console.log(username, roomId)
+  })
+
+  socket.on("reset", (data) => {
+    const { roomId } = data
+    socket.to(roomId).emit("reset_choice", roomId)
+  })
 })
 
 // io.on("connection", (socket) => {
