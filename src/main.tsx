@@ -11,11 +11,11 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "multiplayer",
+    path: "/multiplayer",
     element: <MultiPlayerApp />,
   },
   // { path: "multiplayer/:roomId", element: <GetLink /> },
-  { path: "multiplayer/:roomId/:username", element: <GetLink /> },
+  { path: "/multiplayer/:roomId/:username", element: <GetLink /> },
 ])
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
