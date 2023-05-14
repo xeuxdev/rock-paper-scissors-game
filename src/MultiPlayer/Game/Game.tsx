@@ -16,21 +16,23 @@ const Game = () => {
 
   const roomId = localStorage.getItem("roomId")
 
-  if (socket.connected == false && roomId && roomId !== "") {
-    socket.emit(
-      "join_room",
-      {
-        roomId: localStorage.getItem("roomId"),
-        username:
-          localStorage.getItem("creator") == "true"
-            ? localStorage.getItem("player1Username")
-            : localStorage.getItem("player2Username"),
-      },
-      (msg: string) => {
-        console.log(msg)
-      }
-    )
-  }
+  useEffect(() => {
+    if (socket.connected == false && roomId && roomId !== "") {
+      socket.emit(
+        "join_room",
+        {
+          roomId: localStorage.getItem("roomId"),
+          username:
+            localStorage.getItem("creator") == "true"
+              ? localStorage.getItem("player1Username")
+              : localStorage.getItem("player2Username"),
+        },
+        (msg: string) => {
+          console.log(msg)
+        }
+      )
+    }
+  }, [])
 
   useEffect(() => {
     socket.on("received_choice", (data) => {

@@ -60,16 +60,14 @@ const GameResults = () => {
           setPlayerScore(playerScore)
 
           break
+        case "YOU WIN":
+          setPlayerScore((prevScore) => prevScore + 1)
+          break
         case "YOU LOSE":
           setPlayer2Score((prevScore) => prevScore + 1)
           break
 
-        case "YOU WIN":
-          setPlayerScore((prevScore) => prevScore + 1)
-          break
         default:
-          setPlayer2Score(player2Score)
-          setPlayerScore(playerScore)
           break
       }
 
