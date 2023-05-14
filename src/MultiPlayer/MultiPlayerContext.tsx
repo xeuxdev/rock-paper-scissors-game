@@ -28,7 +28,8 @@ export const MultiPlayerGameContext = createContext<MultiPlayerGameContextType>(
   {} as MultiPlayerGameContextType
 )
 
-export const socket = io("http://localhost:3000")
+// export const socket = io("http://localhost:3000")
+export const socket = io("https://rps-game-ekn0.onrender.com")
 
 //provoder for context wrapper that wrapes entire application
 const MultiPlayerGameContextProvider = ({
