@@ -14,7 +14,9 @@ function CreateRoom({ setOpenCreateRoom }: Props) {
   const generateRoomLink = () => {
     const randomString = crypto.randomUUID().replace(/-/g, "")
     console.log(randomString)
-    setRoomLink(`http://localhost:5173/multiplayer/${randomString}/${userName}`)
+    setRoomLink(
+      `https://rps-game-et-moi.netlify.app/multiplayer/${randomString}/${userName}`
+    )
     localStorage.setItem("roomId", randomString)
     localStorage.setItem("player1Username", userName)
     localStorage.setItem("creator", "true")
