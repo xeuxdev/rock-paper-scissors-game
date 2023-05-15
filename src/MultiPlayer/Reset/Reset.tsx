@@ -8,6 +8,7 @@ const Reset = () => {
     setPlayerScore,
     setPlayer2Score,
     setPlayerChoice,
+    socket,
   } = useContext(MultiPlayerGameContext)
 
   const handleResetScores = () => {
@@ -16,6 +17,10 @@ const Reset = () => {
     setPlayerChoice("")
     setPlayer2Choice("")
     setGameResult("")
+
+    socket.emit("reset", {
+      roomId: localStorage.getItem("roomId"),
+    })
   }
 
   return (

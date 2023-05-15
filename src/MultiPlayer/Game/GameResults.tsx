@@ -40,7 +40,7 @@ const GameResults = () => {
         case "It's A TIE":
           setPlayer2Score(player2Score)
           setPlayerScore(playerScore)
-
+          whoWon = "tie"
           break
         case "YOU WIN":
           whoWon = "player1"
@@ -96,7 +96,9 @@ const GameResults = () => {
         {gameResult && (
           <div className="hidden md:flex flex-col items-center mt-14">
             <p className="uppercase text-white font-bold text-4xl mb-4">
-              {gameResult == "player1"
+              {gameResult == "tie"
+                ? "It's a tie"
+                : gameResult == "player1"
                 ? `${playerName} won`
                 : `${player2Name} won`}
             </p>
@@ -148,7 +150,9 @@ const GameResults = () => {
       {gameResult && (
         <div className="flex flex-col items-center mt-14 md:hidden">
           <p className="uppercase text-white font-bold text-4xl mb-4">
-            {gameResult == "player1"
+            {gameResult == "tie"
+              ? "It's a tie"
+              : gameResult == "player1"
               ? `${playerName} won`
               : `${player2Name} won`}
           </p>
