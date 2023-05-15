@@ -65,9 +65,9 @@ const GameResults = () => {
     setPlayer2Choice("")
     setGameResult("")
 
-    socket.emit("play_again", {
-      roomId: sessionStorage.getItem("roomId"),
-    })
+    // socket.emit("play_again", {
+    //   roomId: sessionStorage.getItem("roomId"),
+    // })
   }
 
   return (

@@ -54,14 +54,13 @@ io.on("connection", (socket) => {
 
   socket.on("leave_room", (data) => {
     const { roomId } = data
-
     socket.leave(roomId)
   })
 
-  socket.on("play_again", (data) => {
-    const { roomId } = data
-    socket.to(roomId).emit("play", roomId)
-  })
+  // socket.on("play_again", (data) => {
+  //   const { roomId } = data
+  //   socket.to(roomId).emit("play", roomId)
+  // })
 })
 
 server.listen(process.env.PORT, () => {
