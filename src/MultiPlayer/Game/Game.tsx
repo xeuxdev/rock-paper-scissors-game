@@ -63,6 +63,14 @@ const Game = () => {
   })
 
   useEffect(() => {
+    socket.on("play", (data) => {
+      setPlayerChoice("")
+      setPlayer2Choice("")
+      setGameResult("")
+    })
+  })
+
+  useEffect(() => {
     socket.on("reset_choice", (data) => {
       setPlayerChoice("")
       setPlayer2Choice("")
