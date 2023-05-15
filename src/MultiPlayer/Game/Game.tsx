@@ -53,9 +53,9 @@ const Game = () => {
 
       if (role == "creator") {
         setPlayerChoice(`${choice}`)
-        toast("player one has chosen")
+        // toast("player one has chosen")
       } else if (role == "joined") {
-        toast("player two has chosen")
+        // toast("player two has chosen")
         setPlayer2Choice(`${choice}`)
       }
     })
