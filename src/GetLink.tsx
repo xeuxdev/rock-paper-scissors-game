@@ -3,6 +3,7 @@ import GameRipple from "./MultiPlayer/Game/GameRipple"
 
 function GetLink() {
   const { roomId, username } = useParams()
+  localStorage.clear()
 
   localStorage.setItem("roomId", roomId as string)
   username && localStorage.setItem("player1Username", username as string)

@@ -9,7 +9,8 @@ const Game = () => {
     player2Choice,
     playerScore,
     player2Score,
-    setPlayer2Name,
+    setPlayerScore,
+    setPlayer2Score,
     socket,
     setPlayer2Choice,
     setPlayerChoice,
@@ -66,6 +67,8 @@ const Game = () => {
       setPlayerChoice("")
       setPlayer2Choice("")
       setGameResult("")
+      setPlayerScore(0)
+      setPlayer2Score(0)
     })
   })
 

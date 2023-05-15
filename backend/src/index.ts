@@ -51,6 +51,12 @@ io.on("connection", (socket) => {
     const { roomId } = data
     socket.to(roomId).emit("reset_choice", roomId)
   })
+
+  socket.on("leave_room", (data) => {
+    const { roomId } = data
+
+    socket.leave(roomId)
+  })
 })
 
 server.listen(process.env.PORT, () => {

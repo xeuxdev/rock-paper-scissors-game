@@ -69,10 +69,10 @@ const MultiPlayerGameContextProvider = ({
     }
   }, [])
 
-  useEffect(() => {
-    console.log(player2Choice, "player2Choice")
-    console.log(playerChoice, "playerChoice")
-  }, [player2Choice, playerChoice])
+  // useEffect(() => {
+  //   console.log(player2Choice, "player2Choice")
+  //   console.log(playerChoice, "playerChoice")
+  // }, [player2Choice, playerChoice])
 
   return (
     <MultiPlayerGameContext.Provider //context provider for the entire app it wrappes

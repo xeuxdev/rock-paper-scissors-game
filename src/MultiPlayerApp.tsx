@@ -7,6 +7,7 @@ import Modal from "./MultiPlayer/Modal/Modal"
 import ModalOpen from "./MultiPlayer/Modal/ModalOpen"
 import CreateRoom from "./MultiPlayer/Modal/CreateRoom"
 import JoinRoom from "./MultiPlayer/Modal/JoinRoom"
+import Clear from "./MultiPlayer/Reset/Clear"
 
 function MultiPlayerApp() {
   const [roomId, setRoomId] = useState(localStorage.getItem("roomId") ?? "")
@@ -45,7 +46,8 @@ function MultiPlayerApp() {
         <Game />
 
         <Modal />
-        <div className="flex items-center justify-center gap-10 mt-20 w-full max-w-sm mx-auto md:mt-14 lg:mt-9">
+        <div className="flex items-center justify-center gap-10 mt-20 w-full max-w-sm mx-auto md:mt-14 lg:mt-9 flex-wrap">
+          <Clear />
           <Reset />
           <ModalOpen />
         </div>
