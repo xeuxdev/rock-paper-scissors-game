@@ -19,7 +19,7 @@ const Reset = () => {
     setGameResult("")
 
     socket.emit("reset", {
-      roomId: localStorage.getItem("roomId"),
+      roomId: sessionStorage.getItem("roomId"),
     })
   }
 

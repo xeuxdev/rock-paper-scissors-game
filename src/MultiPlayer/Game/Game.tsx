@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
 import GameDefault from "./GameDefault"
 import GameResults from "./GameResults"
+import { toast } from "react-hot-toast"
 
 const Game = () => {
   const {
@@ -16,9 +17,6 @@ const Game = () => {
     setPlayerChoice,
     setGameResult,
   } = useContext(MultiPlayerGameContext)
-
-  const roomId = localStorage.getItem("roomId")
-  const [role, setRole] = useState("")
 
   useEffect(() => {
     // if (socket.connected == false && roomId && roomId !== "") {
@@ -42,7 +40,8 @@ const Game = () => {
 
   useEffect(() => {
     socket.on("joined_room", (msg) => {
-      console.log(msg, "balab")
+      // console.log(msg, "balab")
+      toast(msg)
     })
   })
 
@@ -53,10 +52,8 @@ const Game = () => {
       // console.log(role, "role")
 
       if (role == "creator") {
-        setRole("creator")
         setPlayerChoice(`${choice}`)
       } else if (role == "joined") {
-        setRole("joined")
         setPlayer2Choice(`${choice}`)
       }
     })
@@ -77,12 +74,13 @@ const Game = () => {
       setGameResult("")
       setPlayerScore(0)
       setPlayer2Score(0)
+      toast("game has been reset")
     })
-  })
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem("multi-playerScore", `${playerScore}`)
-    localStorage.setItem("multi-player2Score", `${player2Score}`)
+    sessionStorage.setItem("multi-playerScore", `${playerScore}`)
+    sessionStorage.setItem("multi-player2Score", `${player2Score}`)
   }, [playerScore, player2Score])
 
   return (

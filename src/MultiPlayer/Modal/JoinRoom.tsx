@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
+import { toast } from "react-hot-toast"
 
 function JoinRoom({
   roomId,
@@ -13,15 +14,15 @@ function JoinRoom({
   )
   const [userName, setUserName] = useState("")
 
-  const player1Username = localStorage.getItem("player1Username") ?? ""
+  const player1Username = sessionStorage.getItem("player1Username") ?? ""
 
   useEffect(() => {
     player1Username !== "" && setPlayerName(player1Username)
 
     setPlayer2Name(userName)
-    localStorage.setItem("player2Username", userName)
+    sessionStorage.setItem("player2Username", userName)
 
-    // localStorage.getItem("player1Username") && setOpenJoinRoom(false)
+    // sessionStorage.getItem("player1Username") && setOpenJoinRoom(false)
   }, [player1Username, userName])
 
   const startGame = () => {
@@ -34,11 +35,12 @@ function JoinRoom({
         username: userName,
       },
       (msg: string) => {
-        console.log(msg)
+        // console.log(msg)
+        toast(msg)
       }
     )
 
-    localStorage.setItem("joined", "true")
+    sessionStorage.setItem("joined", "true")
 
     setOpenJoinRoom(false)
   }

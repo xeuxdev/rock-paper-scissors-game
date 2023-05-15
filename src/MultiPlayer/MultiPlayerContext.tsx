@@ -41,10 +41,10 @@ const MultiPlayerGameContextProvider = ({
 }: GameContextProviderType) => {
   const [isModalOpen, setisModalOpen] = useState(false)
   const [playerScore, setPlayerScore] = useState<number>(
-    JSON.parse(`${localStorage.getItem("multi-playerScore")}`) ?? 0
+    JSON.parse(`${sessionStorage.getItem("multi-playerScore")}`) ?? 0
   )
   const [player2Score, setPlayer2Score] = useState<number>(
-    JSON.parse(`${localStorage.getItem("multi-player2Score")}`) ?? 0
+    JSON.parse(`${sessionStorage.getItem("multi-player2Score")}`) ?? 0
   )
   const [playerChoice, setPlayerChoice] = useState("")
   const [player2Choice, setPlayer2Choice] = useState("")

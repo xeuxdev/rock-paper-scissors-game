@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
+import { toast } from "react-hot-toast"
 
 type Props = {
   setOpenCreateRoom: React.Dispatch<React.SetStateAction<boolean>>
@@ -17,9 +18,9 @@ function CreateRoom({ setOpenCreateRoom }: Props) {
     setRoomLink(
       `https://rps-game-et-moi.netlify.app/multiplayer/${randomString}/${userName}`
     )
-    localStorage.setItem("roomId", randomString)
-    localStorage.setItem("player1Username", userName)
-    localStorage.setItem("creator", "true")
+    sessionStorage.setItem("roomId", randomString)
+    sessionStorage.setItem("player1Username", userName)
+    sessionStorage.setItem("creator", "true")
 
     socket.emit(
       "join_room",
@@ -28,7 +29,8 @@ function CreateRoom({ setOpenCreateRoom }: Props) {
         username: userName,
       },
       (msg: string) => {
-        console.log(msg)
+        // console.log(msg)
+        toast(msg)
       }
     )
   }
@@ -49,7 +51,7 @@ function CreateRoom({ setOpenCreateRoom }: Props) {
     }
   }, [isCopied])
 
-  const roomId = localStorage.getItem("roomId") ?? ""
+  const roomId = sessionStorage.getItem("roomId") ?? ""
 
   useEffect(() => {
     let timeout = 0

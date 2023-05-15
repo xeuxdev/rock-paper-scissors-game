@@ -8,9 +8,10 @@ import ModalOpen from "./MultiPlayer/Modal/ModalOpen"
 import CreateRoom from "./MultiPlayer/Modal/CreateRoom"
 import JoinRoom from "./MultiPlayer/Modal/JoinRoom"
 import Clear from "./MultiPlayer/Reset/Clear"
+import { Toaster } from "react-hot-toast"
 
 function MultiPlayerApp() {
-  const [roomId, setRoomId] = useState(localStorage.getItem("roomId") ?? "")
+  const [roomId, setRoomId] = useState(sessionStorage.getItem("roomId") ?? "")
   const [openCreateRoom, setOpenCreateRoom] = useState(true)
   const [openJoinRoom, setOpenJoinRoom] = useState(false)
 
@@ -23,7 +24,7 @@ function MultiPlayerApp() {
       setOpenJoinRoom(false)
     }
 
-    if (roomId !== "" && localStorage.getItem("joined") == "true") {
+    if (roomId !== "" && sessionStorage.getItem("joined") == "true") {
       setOpenJoinRoom(false)
     }
   }, [roomId])
@@ -31,8 +32,8 @@ function MultiPlayerApp() {
   useEffect(() => {
     if (
       roomId !== "" &&
-      localStorage.getItem("creator") == "true" &&
-      localStorage.getItem("player1Username") !== ""
+      sessionStorage.getItem("creator") == "true" &&
+      sessionStorage.getItem("player1Username") !== ""
     ) {
       setOpenJoinRoom(false)
       setOpenCreateRoom(false)
@@ -60,6 +61,17 @@ function MultiPlayerApp() {
             <CreateRoom setOpenCreateRoom={setOpenCreateRoom} />
           )}
         </div>
+      </div>
+
+      <div>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          gutter={8}
+          toastOptions={{
+            duration: 5000,
+          }}
+        />
       </div>
     </MultiPlayerGameContextProvider>
   )

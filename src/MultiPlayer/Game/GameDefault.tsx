@@ -8,13 +8,14 @@ const GameDefault = () => {
 
   useEffect(() => {
     socket.on("joined_room", (data) => {
-      console.log(data, "joined_room")
+      // console.log(data, "joined_room")
+      // use toast herer
       setPlayer2Name(data)
     })
   }, [])
 
   const handlePlayerChoice = (choice: string) => {
-    const isCreator = localStorage.getItem("creator")
+    const isCreator = sessionStorage.getItem("creator")
     // const isJoined = localStorage.getItem("joined")
 
     // console.log(object);
@@ -27,13 +28,13 @@ const GameDefault = () => {
 
     const username =
       isCreator == "true"
-        ? localStorage.getItem("player1Username")
-        : localStorage.getItem("player2Username")
+        ? sessionStorage.getItem("player1Username")
+        : sessionStorage.getItem("player2Username")
 
     socket.emit("send_choice", {
       choice,
       username,
-      roomId: localStorage.getItem("roomId"),
+      roomId: sessionStorage.getItem("roomId"),
       role: isCreator == "true" ? "creator" : "joined",
     })
   }

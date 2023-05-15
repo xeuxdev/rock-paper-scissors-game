@@ -21,11 +21,11 @@ function Clear() {
 
   const handleDisconnect = () => {
     socket.emit("leave_room", {
-      roomId: localStorage.getItem("roomId"),
+      roomId: sessionStorage.getItem("roomId"),
     })
     socket.disconnect()
     items.map((item) => {
-      localStorage.removeItem(item)
+      sessionStorage.removeItem(item)
     })
     refreshPage()
   }

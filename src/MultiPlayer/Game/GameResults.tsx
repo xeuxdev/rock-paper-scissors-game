@@ -3,6 +3,7 @@ import GameRipple from "./GameRipple"
 import { motion } from "framer-motion"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
 import { whoWinsTheGame } from "../../components/Game/GamePlayLogic"
+
 const GameResults = () => {
   const {
     player2Choice,
@@ -65,7 +66,7 @@ const GameResults = () => {
     setGameResult("")
 
     socket.emit("play_again", {
-      roomId: localStorage.getItem("roomId"),
+      roomId: sessionStorage.getItem("roomId"),
     })
   }
 
