@@ -53,19 +53,21 @@ const Game = () => {
 
       if (role == "creator") {
         setPlayerChoice(`${choice}`)
+        toast("player one has chosen")
       } else if (role == "joined") {
+        toast("player two has chosen")
         setPlayer2Choice(`${choice}`)
       }
     })
   })
 
-  useEffect(() => {
-    socket.on("play", (data) => {
-      setPlayerChoice("")
-      setPlayer2Choice("")
-      setGameResult("")
-    })
-  })
+  // useEffect(() => {
+  //   socket.on("play", (data) => {
+  //     setPlayerChoice("")
+  //     setPlayer2Choice("")
+  //     setGameResult("")
+  //   })
+  // })
 
   useEffect(() => {
     socket.on("reset_choice", (data) => {
