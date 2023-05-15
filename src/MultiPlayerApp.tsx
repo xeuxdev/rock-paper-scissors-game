@@ -7,13 +7,11 @@ import Modal from "./MultiPlayer/Modal/Modal"
 import ModalOpen from "./MultiPlayer/Modal/ModalOpen"
 import CreateRoom from "./MultiPlayer/Modal/CreateRoom"
 import JoinRoom from "./MultiPlayer/Modal/JoinRoom"
-import ShowWaiting from "./MultiPlayer/Modal/ShowWaiting"
 
 function MultiPlayerApp() {
   const [roomId, setRoomId] = useState(localStorage.getItem("roomId") ?? "")
   const [openCreateRoom, setOpenCreateRoom] = useState(true)
   const [openJoinRoom, setOpenJoinRoom] = useState(false)
-  const [showWaiting, setShowWaiting] = useState(false)
 
   useEffect(() => {
     if (roomId || roomId !== "") {
@@ -27,14 +25,6 @@ function MultiPlayerApp() {
     if (roomId !== "" && localStorage.getItem("joined") == "true") {
       setOpenJoinRoom(false)
     }
-
-    if (roomId && showWaiting) {
-      setOpenJoinRoom(false)
-      setOpenCreateRoom(false)
-    }
-    if (!roomId) {
-      setShowWaiting(false)
-    }
   }, [roomId])
 
   useEffect(() => {
@@ -45,9 +35,8 @@ function MultiPlayerApp() {
     ) {
       setOpenJoinRoom(false)
       setOpenCreateRoom(false)
-      setShowWaiting(true)
     }
-  }, [openCreateRoom, roomId, showWaiting])
+  }, [openCreateRoom, roomId])
 
   return (
     <MultiPlayerGameContextProvider>
@@ -68,14 +57,6 @@ function MultiPlayerApp() {
           {openCreateRoom && (
             <CreateRoom setOpenCreateRoom={setOpenCreateRoom} />
           )}
-        </div>
-
-        <div>
-          {/* {showWaiting && (
-            <>
-              <ShowWaiting setShowWaiting={setShowWaiting} />
-            </>
-          )} */}
         </div>
       </div>
     </MultiPlayerGameContextProvider>

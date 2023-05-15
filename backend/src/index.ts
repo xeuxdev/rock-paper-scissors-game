@@ -17,16 +17,6 @@ const io = new Server(server, {
   },
 })
 
-app.get("/api/", (req, res) => {
-  res.status(200).json({ message: "OK" })
-})
-
-app.post("/room/:id", (req, res) => {
-  const id = req.params.id
-  res.send(id)
-  // console.log(id)
-})
-
 io.on("connection", (socket) => {
   console.log("a user connected =>", socket.id)
 
@@ -35,10 +25,10 @@ io.on("connection", (socket) => {
 
     // console.log(roomId)
 
-    console.log(username, choice, roomId, role)
+    // console.log(username, choice, roomId, role)
     if (roomId === "") {
       // socket.broadcast.emit("received_choice", data)
-      console.log("no room joined")
+      // console.log("no room joined")
     } else {
       socket.to(roomId).emit("received_choice", data)
     }
@@ -54,7 +44,7 @@ io.on("connection", (socket) => {
     cb("Joined room", roomId, "as ", username)
 
     socket.to(roomId).emit("joined_room", username)
-    console.log(username, roomId)
+    // console.log(username, roomId)
   })
 
   socket.on("reset", (data) => {
@@ -63,12 +53,6 @@ io.on("connection", (socket) => {
   })
 })
 
-// io.on("connection", (socket) => {
-//   console.log("a user connected")
-//   socket.on("disconnect", () => {
-//     console.log("user disconnected")
-//   })
-// })
 server.listen(process.env.PORT, () => {
   console.log("app running on port " + process.env.PORT)
 })

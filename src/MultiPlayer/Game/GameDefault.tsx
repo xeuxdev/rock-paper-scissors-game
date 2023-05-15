@@ -3,18 +3,27 @@ import { motion } from "framer-motion"
 import { MultiPlayerGameContext } from "../MultiPlayerContext"
 
 const GameDefault = () => {
-  const { setPlayerChoice, socket } = useContext(MultiPlayerGameContext)
+  const { setPlayerChoice, setPlayer2Choice, socket, setPlayer2Name } =
+    useContext(MultiPlayerGameContext)
 
   useEffect(() => {
     socket.on("joined_room", (data) => {
       console.log(data, "joined_room")
+      setPlayer2Name(data)
     })
   }, [])
 
   const handlePlayerChoice = (choice: string) => {
-    setPlayerChoice(choice)
     const isCreator = localStorage.getItem("creator")
-    const isJoined = localStorage.getItem("joined")
+    // const isJoined = localStorage.getItem("joined")
+
+    // console.log(object);
+    if (isCreator == "true") {
+      setPlayerChoice(choice)
+    } else {
+      setPlayer2Choice(choice)
+    }
+    // setPlayerChoice(choice)
 
     const username =
       isCreator == "true"

@@ -8,12 +8,21 @@ function JoinRoom({
   roomId: string
   setOpenJoinRoom: React.Dispatch<React.SetStateAction<boolean>>
 }) {
-  const { socket } = useContext(MultiPlayerGameContext)
+  const { socket, setPlayerName, setPlayer2Name } = useContext(
+    MultiPlayerGameContext
+  )
   const [userName, setUserName] = useState("")
 
-  // useEffect(() => {
-  //   localStorage.getItem("player1Username") && setOpenJoinRoom(false)
-  // })
+  const player1Username = localStorage.getItem("player1Username") ?? ""
+
+  useEffect(() => {
+    player1Username !== "" && setPlayerName(player1Username)
+
+    setPlayer2Name(userName)
+    localStorage.setItem("player2Username", userName)
+
+    // localStorage.getItem("player1Username") && setOpenJoinRoom(false)
+  }, [player1Username, userName])
 
   const startGame = () => {
     console.log(roomId)
@@ -29,7 +38,6 @@ function JoinRoom({
       }
     )
 
-    localStorage.setItem("player2Username", userName)
     localStorage.setItem("joined", "true")
 
     setOpenJoinRoom(false)

@@ -16,28 +16,10 @@ const GameResults = () => {
     player2Score,
     setPlayer2Score,
     socket,
+    playerName,
+    player2Name,
   } = useContext(MultiPlayerGameContext)
-
-  // const receivedChoice = () => {
-
-  // }
-
-  // const gameInPlay = () => {
-  //   console.log(player2Choice)
-
-  //   const winner = whoWinsTheGame(playerChoice, player2Choice)
-
-  //   if (winner === "It's A TIE") {
-  //     setPlayer2Score(player2Score)
-  //   } else {
-  //     winner === "YOU WIN"
-  //       ? setPlayerScore((prevScore) => prevScore + 1)
-  //       : winner === "YOU LOSE"
-  //       ? setPlayer2Score((prevScore) => prevScore + 1)
-  //       : setPlayerScore(playerScore)
-  //   }
-  //   setGameResult(winner)
-  // }
+  let whoWon = ""
 
   useEffect(() => {
     if (playerChoice !== "" && player2Choice !== "") {
@@ -61,9 +43,11 @@ const GameResults = () => {
 
           break
         case "YOU WIN":
+          whoWon = "player1"
           setPlayerScore((prevScore) => prevScore + 1)
           break
         case "YOU LOSE":
+          whoWon = "player2"
           setPlayer2Score((prevScore) => prevScore + 1)
           break
 
@@ -71,7 +55,7 @@ const GameResults = () => {
           break
       }
 
-      setGameResult(winner)
+      setGameResult(whoWon)
     }
   }, [player2Choice, playerChoice])
 
@@ -104,7 +88,7 @@ const GameResults = () => {
             </div>
           </div>
           <p className="text-white text-sm md:text-xl font-bold mt-8 md:mt-0 md:mb-10">
-            YOU PLAYED
+            {playerName}
           </p>
         </div>
 
@@ -112,7 +96,9 @@ const GameResults = () => {
         {gameResult && (
           <div className="hidden md:flex flex-col items-center mt-14">
             <p className="uppercase text-white font-bold text-4xl mb-4">
-              {gameResult}
+              {gameResult == "player1"
+                ? `${playerName} won`
+                : `${player2Name} won`}
             </p>
             <motion.button
               className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center"
@@ -153,7 +139,7 @@ const GameResults = () => {
           )}
 
           <p className="text-white text-sm md:text-xl font-bold mt-8 md:mt-0 md:mb-10">
-            THE HOUSE PLAYED
+            {player2Name}
           </p>
         </div>
       </div>
@@ -162,7 +148,9 @@ const GameResults = () => {
       {gameResult && (
         <div className="flex flex-col items-center mt-14 md:hidden">
           <p className="uppercase text-white font-bold text-4xl mb-4">
-            {gameResult}
+            {gameResult == "player1"
+              ? `${playerName} won`
+              : `${player2Name} won`}
           </p>
           <motion.button
             className="w-56 h-12 rounded-md bg-white text-dark_Text hover:text-rock_gradient_1 uppercase grid place-items-center"

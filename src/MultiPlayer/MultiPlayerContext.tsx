@@ -17,6 +17,10 @@ type MultiPlayerGameContextType = {
   gameResult: string | undefined
   setGameResult: React.Dispatch<React.SetStateAction<string | undefined>>
   socket: Socket
+  playerName: string
+  setPlayerName: React.Dispatch<React.SetStateAction<string>>
+  player2Name: string
+  setPlayer2Name: React.Dispatch<React.SetStateAction<string>>
 }
 //type for children
 type GameContextProviderType = {
@@ -28,8 +32,8 @@ export const MultiPlayerGameContext = createContext<MultiPlayerGameContextType>(
   {} as MultiPlayerGameContextType
 )
 
-// export const socket = io("http://localhost:3000")
-export const socket = io("https://rps-game-ekn0.onrender.com")
+export const socket = io("http://localhost:3000")
+// export const socket = io("https://rps-game-ekn0.onrender.com")
 
 //provoder for context wrapper that wrapes entire application
 const MultiPlayerGameContextProvider = ({
@@ -46,6 +50,8 @@ const MultiPlayerGameContextProvider = ({
   const [player2Choice, setPlayer2Choice] = useState("")
   const [gameResult, setGameResult] = useState<string | undefined>("")
   const handleModalToggle = () => setisModalOpen((prev) => !prev)
+  const [playerName, setPlayerName] = useState("")
+  const [player2Name, setPlayer2Name] = useState("")
 
   // inti socket
 
@@ -85,6 +91,10 @@ const MultiPlayerGameContextProvider = ({
         gameResult,
         setGameResult,
         socket,
+        player2Name,
+        playerName,
+        setPlayer2Name,
+        setPlayerName,
       }} //values in the context
     >
       {children}

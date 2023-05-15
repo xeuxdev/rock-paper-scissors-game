@@ -6,7 +6,7 @@ type Props = {
 }
 
 function CreateRoom({ setOpenCreateRoom }: Props) {
-  const { socket } = useContext(MultiPlayerGameContext)
+  const { socket, setPlayerName } = useContext(MultiPlayerGameContext)
   const [roomLink, setRoomLink] = useState("")
   const [isCopied, setIsCopied] = useState(false)
   const [userName, setUserName] = useState("")
@@ -67,8 +67,9 @@ function CreateRoom({ setOpenCreateRoom }: Props) {
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    console.log(userName)
+    // console.log(userName)
     generateRoomLink()
+    setPlayerName(userName)
   }
 
   return (
