@@ -71,4 +71,4 @@ export const GameContext = createContext<GameContextType>({} as GameContextType)
 ## Author
 
 - Frontend Mentor - [@headbwoi](https://www.frontendmentor.io/profile/headbwoi)
-- Twitter - [@headbwoi_1](https://www.twitter.com/headbwoi_1)
+- Twitter - [@headbwoi_1](https://www.twitter.com/xeuxdev)
